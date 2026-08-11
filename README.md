@@ -32,6 +32,8 @@ Features
 💳 Mocked checkout — address + COD / UPI / Card selector → order confirmation
 🔄 Graceful degradation — with no OpenAI key set, falls back to plain keyword search instead of breaking
 Architecture
+
+
 ┌────────────────────────┐        HTTPS / JSON        ┌───────────────────────────┐
 │   React Native (Expo)   │  ───────────────────────▶  │   FastAPI backend (/api)  │
 │   expo-router screens   │  ◀───────────────────────  │   scoring + LLM calls     │
@@ -42,6 +44,7 @@ Architecture
                                                           │  OpenAI Chat Completions│
                                                           │  (intent + reasons)     │
                                                           └────────────────────────┘
+                                                          
 Frontend: Expo (SDK 54) + expo-router file-based navigation, talking to the backend over a REST API defined by EXPO_PUBLIC_BACKEND_URL.
 Backend: a single FastAPI app (/api prefix) handling search, catalog browsing, cart, wishlist, and checkout.
 AI: OpenAI's Chat Completions API, called twice per search — once to turn the query into structured intent, once to write the summary + per-product reasons.
